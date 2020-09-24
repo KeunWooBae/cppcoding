@@ -15,6 +15,8 @@ public:
             return 1;
         }
         else return 0;
+        
+        return 0;
     }
      
     vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
