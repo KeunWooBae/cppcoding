@@ -1,11 +1,7 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
-    int isFull(int **arr, int R, int C)
-    {   
+    int isFull(int** arr, int R, int C)
+    {
         if (R == 1)
         {
             if (arr[0][0] != 0 && arr[0][C - 1] != 0) return 1;
@@ -15,10 +11,10 @@ public:
             return 1;
         }
         else return 0;
-        
+
         return 0;
     }
-     
+
     vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
 
         int cnt = 1;
@@ -34,7 +30,7 @@ public:
             {0, 1}, {1, 0}, {0, -1}, {-1, 0}
         };
 
-        for (x= 0; x < R; ++x)         
+        for (x = 0; x < R; ++x)
             arr[x] = new int[C];
 
         for (x = 0; x < R; x++)
@@ -44,10 +40,10 @@ public:
                 arr[x][y] = 0;
             }
         }
-                
+
         arr[r0][c0] = cnt;
         cnt++;
-        result.push_back({r0, c0});
+        result.push_back({ r0, c0 });
 
         while (1)
         {
@@ -67,16 +63,16 @@ public:
                     arr[r0 + index1 * a][c0 + index2 * a] = cnt;
                     cnt++;
                     result.push_back({ r0 + index1 * a, c0 + index2 * a });
-                    
+
                 }
 
-                
+
                 r0 += index1 * (a - 1);
                 c0 += index2 * (a - 1);
-                
+
                 t++;
                 check = isFull(arr, R, C);
-                if (check == 1) break;                             
+                if (check == 1) break;
             }
             if (check == 1) break;
         }
@@ -88,8 +84,18 @@ public:
 int main()
 {
     Solution t = Solution();
+    int R, C, r0, c0;
+    vector<vector<int>> result;
 
-    t.spiralMatrixIII(1, 4, 0, 0);
+    cin >> R >> C >> r0 >> c0;
+
+    result = t.spiralMatrixIII(R, C ,r0, c0);
+
+    for (int x = 0; x < result.size(); x++)
+    {
+        cout << "{" << result[x][0] << "," << result[x][1] << "}";
+        cout << endl;
+    }
 
 
     return 0;
