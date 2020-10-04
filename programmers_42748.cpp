@@ -7,23 +7,22 @@ using namespace std;
 vector<int> solution(vector<int> array, vector<vector<int>> commands)
 {
     vector<int> answer;
+    vector<int> temp;
 
     for (int x = 0; x < commands.size(); x++)
     {
-        int temp;
-        int bucket[100] = { 0 };
         int start = commands[x][0];
         int end = commands[x][1];
-        int target = commands[x][2];
+        int target = commands[x][2] - 1;
 
-        for (int z = start - 1; z <= end - 1; z++)
+        for (int y = start - 1; y < end; y++)
         {
-            bucket[z - (start - 1)] = array[z];
+            temp.push_back(array[y]);
         }
         
-        sort(bucket, bucket + end - start + 1);
-        answer.push_back(bucket[target - 1]);
-
+        sort(temp.begin(), temp.end(), less<int>());
+        answer.push_back(temp[target]);
+        temp.clear();
     }
     return answer;
 }
