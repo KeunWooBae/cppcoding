@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+int input[5] = { 4, 2, -5, 3, -1 };
+int MAX = -21e7;
+int sum;
+
+void dfs(int level)
+{
+	if (level == 5)
+	{
+		if (MAX < sum) MAX = sum;
+		return;
+	}
+	
+	sum = sum + input[level] / 2;
+	dfs(level + 1);
+	sum = sum - (input[level] / 2);
+
+
+	sum = sum + (input[level] * 3);
+	dfs(level + 1);
+	sum = sum - (input[level] * 3);
+
+	sum = sum + input[level] - 5;
+	dfs(level + 1);
+	sum = sum -( input[level] - 5);
+
+}
+
+int main()
+{
+
+	dfs(0);
+	cout << MAX;
+
+	return 0;
+}
