@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int maxi = -21e8;
+int vect[5] = { 4, 2, -5, 3, -1 };
+
+void run(int level, int sum)
+{
+    if (level == 5) {
+        if (sum > maxi) {
+            maxi = sum;
+        }
+        return;
+    }
+
+    run(level + 1, sum + (vect[level] / 2));
+    run(level + 1, sum + (vect[level] * 3));
+    run(level + 1, sum + (vect[level] - 5));
+}
+
+int main()
+{
+    run(0, 0);
+    cout << maxi;
+
+    return 0;
+}
